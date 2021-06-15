@@ -9,9 +9,22 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Document</title>
     <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://picsum.photos/id/30/1400/600') no-repeat center center;
+            background-size: cover;
+        }
+
         .container {
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 3px;
+        }
+
+        .row {
+            max-height: 600px;
         }
 
         .col-md-4,
@@ -19,6 +32,12 @@
             outline: 1px solid steelblue;
             min-height: 600px;
         }
+
+
+        .col-md-4 {
+            overflow-y: auto;
+        }
+
 
         [data-alpha-pos="delete-drink"] {
             display: inline-block;
@@ -71,29 +90,29 @@
                     <button class="btn btn-warning" data-alpha-pos="checkout">checkout</button>
                 </div>
             </div>
-            <div class="col-md-8" data-order-panel>
-                <section class="menu">
-                    <div class="card-deck">
+            <div class="col-md-8 p-4" data-order-panel>
+                <section class="menu mb-4">
+                    <div class="card-deck mb-3">
                         <div class="card text-center bg-warning">
-                            <label class="card-body">
+                            <label class="card-body px-2">
                                 <h5 class="card-title">Black Tea</h5>
                                 <input type="radio" name="drink" value="Black Tea">
                             </label>
                         </div>
                         <div class="card text-center bg-warning">
-                            <label class="card-body">
+                            <label class="card-body px-2">
                                 <h5 class="card-title">Oolone Tea</h5>
                                 <input type="radio" name="drink" value="Oolone Tea">
                             </label>
                         </div>
                         <div class="card text-center bg-warning">
-                            <label class="card-body">
+                            <label class="card-body px-2">
                                 <h5 class="card-title">Baozong Tea</h5>
                                 <input type="radio" name="drink" value="Baozong Tea">
                             </label>
                         </div>
                         <div class="card text-center bg-warning">
-                            <label class="card-body">
+                            <label class="card-body px-2">
                                 <h5 class="card-title">Green tea</h5>
                                 <input type="radio" name="drink" value="Green tea">
                             </label>
@@ -101,61 +120,64 @@
                     </div>
                     <div class="card-deck">
                         <div class="card text-center bg-warning">
-                            <label class="card-body">
+                            <label class="card-body px-2">
                                 <h5 class="card-title">Bubble Milk Tea</h5>
                                 <input type="radio" name="drink" value="Bubble Milk Tea">
                             </label>
                         </div>
                         <div class="card text-center bg-warning">
-                            <label class="card-body">
+                            <label class="card-body px-2">
                                 <h5 class="card-title">Black Tea Latte</h5>
                                 <input type="radio" name="drink" value="Black Tea Latte">
                             </label>
                         </div>
                         <div class="card text-center bg-warning">
-                            <label class="card-body">
+                            <label class="card-body px-2">
                                 <h5 class="card-title">Lemon Green</h5>
                                 <input type="radio" name="drink" value="Lemon Green">
                             </label>
                         </div>
                         <div class="card text-center bg-warning">
-                            <label class="card-body">
+                            <label class="card-body px-2">
                                 <h5 class="card-title">Matcha Latte</h5>
                                 <input type="radio" name="drink" value="Matcha Latte">
                             </label>
                         </div>
                 </section>
-                <section class="ice">
+                <section class="ice mb-4">
                     <label class="d-block text-light">Ice</label>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-outline-primary">
+                        <label class="btn btn-outline-warning">
                             <input type="radio" name="ice" value="No Ice">No
                         </label>
-                        <label class="btn btn-outline-primary">
+                        <label class="btn btn-outline-warning">
                             <input type="radio" name="ice" value="Less Ice">Less
                         </label>
-                        <label class="btn btn-outline-primary active">
+                        <label class="btn btn-outline-warning active">
                             <input type="radio" name="ice" value="Regular" checked>Regular
                         </label>
                     </div>
                 </section>
-                <section class="sugar">
+                <section class="sugar mb-5">
                     <label class="d-block text-light">Sugar</label>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-outline-primary">
+                        <label class="btn btn-outline-warning">
                             <input type="radio" name="sugar" value="No sugar">A Little
                         </label>
-                        <label class="btn btn-outline-primary">
+                        <label class="btn btn-outline-warning">
                             <input type="radio" name="sugar" value="Less sugar">Half
                         </label>
-                        <label class="btn btn-outline-primary">
+                        <label class="btn btn-outline-warning">
                             <input type="radio" name="sugar" value="Less sugar">Less
                         </label>
-                        <label class="btn btn-outline-primary active">
+                        <label class="btn btn-outline-warning active">
                             <input type="radio" name="sugar" value="Regular" checked>Regular
                         </label>
                     </div>
                 </section>
+                <div class="text-right">
+                    <div class="btn btn-light" style="min-width:120px;" data-alpha-pos="add-drink">Add</div>
+                </div>
             </div>
         </div>
     </div>
