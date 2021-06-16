@@ -52,6 +52,10 @@ AlphaPos.prototype.addDrink = function (drink) {
     orderLists.insertAdjacentHTML('afterbegin', orderListsCard)
 }
 
+AlphaPos.prototype.deleteDrink = function(target){
+    target.remove()
+}
+
 // 所有選項節點
 // 飲料
 let allDrinkOptions = document.querySelectorAll('input[name="drink"]')
@@ -146,4 +150,13 @@ addDrinkButton.addEventListener('click', function () {
 
     alphaPos.addDrink(drink)
 
+})
+orderLists.addEventListener('click',function(event){
+    let target = event.target
+    let isDeleteButton = target.matches('[data-alpha-pos="delete-drink"]')
+    if(!isDeleteButton){
+        return
+    }
+    
+    alphaPos.deleteDrink(target.parentElement.parentElement.parentElement)
 })
