@@ -36,6 +36,7 @@
 
         .col-md-4 {
             overflow-y: auto;
+            max-height: 580px;
         }
 
 
@@ -69,8 +70,9 @@
     <div class="container">
         <h1 class="text-center">Alpha Pos system</h1>
         <div class="row">
+            <!-- 顯示點餐結果區 -->
             <div class="col-md-4 p-4" data-order-lists>
-                <div class="card text-dark bg-warning mb-3">
+                <!-- <div class="card text-dark bg-warning mb-3">
                     <div class="card-body pt-3 pr-3">
                         <div class="text-right ">
                             <span data-alpha-pos="delete-drink">x</span>
@@ -88,9 +90,11 @@
                 </div>
                 <div class="text-right">
                     <button class="btn btn-warning" data-alpha-pos="checkout">checkout</button>
-                </div>
+                </div> -->
             </div>
-            <div class="col-md-8 p-4" data-order-panel>
+            <!-- 選單區 -->
+             <div class="col-md-8 p-4" data-order-panel>
+                <!-- 飲料 -->
                 <section class="menu mb-4">
                     <div class="card-deck mb-3">
                         <div class="card text-center bg-warning">
@@ -144,6 +148,7 @@
                             </label>
                         </div>
                 </section>
+                <!-- 冰塊 -->
                 <section class="ice mb-4">
                     <label class="d-block text-light">Ice</label>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -158,6 +163,7 @@
                         </label>
                     </div>
                 </section>
+                <!-- 甜度 -->
                 <section class="sugar mb-5">
                     <label class="d-block text-light">Sugar</label>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -165,7 +171,7 @@
                             <input type="radio" name="sugar" value="No sugar">A Little
                         </label>
                         <label class="btn btn-outline-warning">
-                            <input type="radio" name="sugar" value="Less sugar">Half
+                            <input type="radio" name="sugar" value="Half">Half
                         </label>
                         <label class="btn btn-outline-warning">
                             <input type="radio" name="sugar" value="Less sugar">Less
