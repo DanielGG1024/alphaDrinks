@@ -55,7 +55,20 @@ AlphaPos.prototype.addDrink = function (drink) {
 AlphaPos.prototype.deleteDrink = function(target){
     target.remove()
 }
-
+AlphaPos.prototype.checkout = function(){
+    let totalAmount = 0
+    document.querySelectorAll('[data-drink-price]').forEach(function(drink){
+        totalAmount += Number(drink.textContent)
+        // console.log(drink)
+        // console.log(drink.textContent)
+    })
+    return totalAmount
+}
+AlphaPos.prototype.clearOrder = function(target){
+ target.querySelectorAll('.card').forEach(function(card){
+     card.remove()
+ })    
+}
 // 所有選項節點
 // 飲料
 let allDrinkOptions = document.querySelectorAll('input[name="drink"]')
@@ -157,6 +170,13 @@ orderLists.addEventListener('click',function(event){
     if(!isDeleteButton){
         return
     }
-    
     alphaPos.deleteDrink(target.parentElement.parentElement.parentElement)
+})
+
+const checkoutButton = document.querySelector('[data-alpha-pos="checkout"]')
+checkoutButton.addEventListener('click',function(){
+    alphaPos.checkout()
+    alert(`Total amount of drinks:$ ${alphaPos.checkout()}`)
+
+    alphaPos.clearOrder(orderLists)
 })
