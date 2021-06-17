@@ -1,10 +1,11 @@
-const orderLists = document.querySelector('[data-order-lists]')
 
+// constructor function
 function Drink(name, sugar, ice) {
     this.name = name
     this.sugar = sugar
     this.ice = ice
 }
+// 建立price方法 用名稱判斷價格
 Drink.prototype.price = function () {
     switch (this.name) {
         case 'Black Tea':
@@ -22,7 +23,13 @@ Drink.prototype.price = function () {
             alert('No this Drink')
     }
 }
+// constructor function??
 function AlphaPos() { }
+
+// 新增一個 回傳被選取選項的方法
+// 輸入值為input name 中的歸類(ex. drink 為所有的飲料選項
+// 當此方法輸入值為drink時 使用DOM選到所有飲料節點,辨識何者checked
+// 為true)
 AlphaPos.prototype.getCheckedValue = function (inputName) {
     let selectOption = ''
     document.querySelectorAll(`[name=${inputName}]`).forEach(
@@ -33,150 +40,87 @@ AlphaPos.prototype.getCheckedValue = function (inputName) {
         })
     return selectOption
 }
-AlphaPos.prototype.addDrink = function (drink) {
-    let orderListsCard = `
-<div class="card mb-3 bg-warning">
-<div class="card-body pt-3 pr-3">
-  <div class="text-right">
-    <span data-alpha-pos="delete-drink">×</span>
-  </div>
-  <h6 class="card-title mb-1">${drink.name}</h6>
-  <div class="card-text">${drink.ice}</div>
-  <div class="card-text">${drink.sugar}</div>
-</div>
-<div class="card-footer text-right py-2">
-  <div class="card-text text-muted">$ <span data-drink-price>${drink.price()}</span></div>
-</div>
-</div>
+// 取得所有資訊後 顯示在點餐區
+AlphaPos.prototype.addDrink = function (drink) {   
+  let orderListsCard = 
 `
-    orderLists.insertAdjacentHTML('afterbegin', orderListsCard)
+    <div class="card mb-3 bg-warning">
+        <div class="card-body pt-3 pr-3">
+            <div class="text-right">
+                <span data-alpha-pos="delete-drink">×</span>
+            </div>
+            <h6 class="card-title mb-1">${drink.name}</h6>
+            <div class="card-text">${drink.ice}</div>
+            <div class="card-text">${drink.sugar}</div>
+        </div>
+        <div class="card-footer text-right py-2">
+          <div class="card-text text-muted">$ <span data-drink-price>${drink.price()}</span></div>
+        </div>
+    </div>
+`
+//   節點       加入方法             位子           內容
+  orderLists.insertAdjacentHTML('afterbegin', orderListsCard)
 }
 
-AlphaPos.prototype.deleteDrink = function(target){
+AlphaPos.prototype.deleteDrink = function (target) {
     target.remove()
 }
-AlphaPos.prototype.checkout = function(){
+
+// 回傳已點餐的總共金額
+AlphaPos.prototype.checkout = function () {
     let totalAmount = 0
-    document.querySelectorAll('[data-drink-price]').forEach(function(drink){
+    document.querySelectorAll('[data-drink-price]').forEach(function (drink) {
         totalAmount += Number(drink.textContent)
-        // console.log(drink)
-        // console.log(drink.textContent)
     })
     return totalAmount
 }
-AlphaPos.prototype.clearOrder = function(target){
- target.querySelectorAll('.card').forEach(function(card){
-     card.remove()
- })    
+
+AlphaPos.prototype.clearOrder = function (target) {
+    target.querySelectorAll('.card').forEach(function (card) {
+        card.remove()
+    })
 }
-// 所有選項節點
-// 飲料
-let allDrinkOptions = document.querySelectorAll('input[name="drink"]')
-// console.log(allDrinkOptions)
-allDrinkOptions.forEach(function (option) {
-    if (option.checked) {
-        console.log(`${option.value}`)
-    }
-})
-// 甜度
-let allSugar = document.querySelectorAll('input[name="sugar"]')
-// console.log(allSugar)
-allSugar.forEach(function (option) {
-    if (option.checked) {
-        console.log(`${option.value}`)
-    }
-})
-// 冰塊
-let allIce = document.querySelectorAll('input[name="ice"]')
-// console.log(allIce)
-allIce.forEach(function (option) {
-    if (option.checked) {
-        console.log(`${option.value}`)
-    }
-})
-
-// let bubbleMilKTea = new Drink('Bubble Milk Tea', 'No Sugar', 'Less Ice')
-// console.log(bubbleMilKTea)
-// console.log(bubbleMilKTea.price())
-
-// let blackTea = new Drink('Black Tea', 'No sugar', 'Less Ice')
-// console.log(blackTea)
-// console.log(blackTea.price())
-
-// let lemonGreen = new Drink('Lemon Green Tea', 'No sugar', 'Less Ice')
-// console.log(lemonGreen)
-// console.log(lemonGreen.price())
-
-// let oloneTea = new Drink('Oolone Tea', 'No sugar', 'Less Ice')
-// console.log(oloneTea)
-// console.log(oloneTea.price())
-
-
-// const orderLists = document.querySelector('[data-order-lists]')
-// AlphaPos.prototype.addDrink = function (drink) {
-//     let orderListsHtml = `
-//     <div class="card text-dark bg-warning mb-3">
-//     <div class="card-body pt-3 pr-3">
-//         <div class="text-right ">
-//             <span data-alpha-pos="delete-drink">x</span>
-//         </div>
-//         <h5 class="card-title mb-1">${drinkName}</h5>
-//         <p class="card-text">${ice}}</p>
-//         <p class="card-text">${sugar}</p>
-//     </div>
-//     <div class="card-footer text-right py-2">
-//         <div class="card-text text-muted">
-//             $ <span data-drink-price>${drink.price()}</span>
-//         </div>
-//     </div>
-
-// </div>
-// <div class="text-right">
-//     <button class="btn btn-warning" data-alpha-pos="checkout">checkout</button>
-// </div>
-
-
-//     `
-//     orderLists.insertAdjacentHTML('afertbegin', orderListsHtml)
-
-
-
-// }
 
 const alphaPos = new AlphaPos()
 
+
+const orderLists = document.querySelector('[data-order-lists]')
 const addDrinkButton = document.querySelector('[data-alpha-pos="add-drink"]')
+const checkoutButton = document.querySelector('[data-alpha-pos="checkout"]')
+
+// 監聽區
+// 新增鈕
 addDrinkButton.addEventListener('click', function () {
+    // 透過input name 分類[name="${inputName}"]
+    // 分別取出checked 的值
     const drinkName = alphaPos.getCheckedValue('drink')
     const ice = alphaPos.getCheckedValue('ice')
     const sugar = alphaPos.getCheckedValue('sugar')
+    // 如果飲料名稱為空就return
     if (!drinkName) {
         alert('Please choose at least one item.')
         return
     }
-
-    console.log(`${drinkName},${ice},${sugar}`)
+    // 將取得的值 使用結構函式帶入
     const drink = new Drink(drinkName, sugar, ice)
-    console.log(drink)
-    console.log(drink.price())
-
-
+    //並渲染在左側顯示已點餐區
     alphaPos.addDrink(drink)
-
 })
-orderLists.addEventListener('click',function(event){
+
+// 刪除鈕
+orderLists.addEventListener('click', function (event) {
     let target = event.target
+    // matches 回傳布林值 點到X就回傳ture 
     let isDeleteButton = target.matches('[data-alpha-pos="delete-drink"]')
-    if(!isDeleteButton){
+    if (!isDeleteButton) {
         return
     }
     alphaPos.deleteDrink(target.parentElement.parentElement.parentElement)
 })
 
-const checkoutButton = document.querySelector('[data-alpha-pos="checkout"]')
-checkoutButton.addEventListener('click',function(){
-    alphaPos.checkout()
+// 送出鈕
+// 總金額alter 清除
+checkoutButton.addEventListener('click', function () {
     alert(`Total amount of drinks:$ ${alphaPos.checkout()}`)
-
     alphaPos.clearOrder(orderLists)
 })
